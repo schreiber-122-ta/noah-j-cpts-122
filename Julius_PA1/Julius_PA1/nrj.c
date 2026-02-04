@@ -174,6 +174,14 @@ void updateData(int curMin, FitbitData data[], Validity validity[], WhatData typ
 //reads line from .csv file and indirectly stores to FitbitData arr
 void parseCSV(FILE* infile, FitbitData data[], Validity validity[])
 {
+	/**
+	 * TA_NOTE: A lot of these are magic numbers. Use #define or const variables instead.
+	 * 
+	 * EX: #define MAX_LINE_LENGTH 255
+	 * 
+	 * Then, you could do this:
+	 * char buffer[MAX_LINE_LENGTH] = "";
+	*/
 	char buffer[255] = "", delim[2] = { ',' }, target[10] = "";
 	char patient[10] = "" , bufferMinute[9] = "";
 	unsigned int curMin = 0;
@@ -237,6 +245,14 @@ void parseCSV(FILE* infile, FitbitData data[], Validity validity[])
 //its in the name bruh (too informal?)
 double sumCalories(FitbitData data[])
 {
+	/**
+	 * TA_NOTE: In this lab, it doesn't happen, but
+	 * what if one of the calories values was the maximum double value?
+	 * 
+	 * We'd have an overflow when we add to sum.
+	 * 
+	 * To be safe, you should check for overflow before adding.
+	*/
 	double sum = 0;
 	for (int i = 0; i < 1440; ++i)
 	{
@@ -297,6 +313,12 @@ int maxStep(FitbitData data[], char minMaxStep[])
 	int max = 0;
 	for (int i = 0; i < 1440; ++i)
 	{
+		/**
+		 * TA_NOTE: This only captures the first occurrence of the max steps.
+		 * The rubric specifically says to capture the latest occurrence.
+		 * 
+		 * To fix this, change the > to >= in the if statement below.
+		*/
 		if (data[i].steps > max)
 		{
 			max = data[i].steps;
@@ -371,6 +393,10 @@ void writeCVS(FILE* outfile, FitbitData data[], Validity validity[])
 	//printing of cleaned out data
 	fprintf(outfile, "\nPatient,minute,calories,distance,floors,heart,steps,sleep_level");
 
+	/**
+	 * TA_NOTE: (nit) Use brackets in your code blocks, even for single-line blocks.
+	 * It avoids some difficult to find bugs, and also is much easier to read.
+	*/
 	for (int i = 0; i < 1440; ++i)
 	{
 		//wrtie patient and current minute for this line

@@ -7,6 +7,10 @@
 #include <string.h>
 #include <math.h> //legit only for abs(), lol
 
+/**
+ * TA_NOTE: In CPTS 121, adding these comment blocks was apart of the rubric.
+ * For this class, I find them kind of obnoxious, and prefer to leave them out.
+*/
 //+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 // 
 // custom data types (structs and enums at my knowledge level)

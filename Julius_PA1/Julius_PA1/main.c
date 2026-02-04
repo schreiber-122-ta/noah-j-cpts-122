@@ -11,12 +11,24 @@ Description: This program will parse through and organize fitbit data from a .cs
 
 int main(void)
 {
+	/**
+	 * TA_NOTE: Avoid using magic numbers. Use #define or const variables instead.
+	 * EX: #define MINUTES_IN_DAY 1440
+	 * 
+	 * Then, you could do this:
+	 * FitbitData fitData[MINUTES_IN_DAY];
+	 * Validity fitValidity[MINUTES_IN_DAY];
+	 */
 	FitbitData fitData[1440];
 	Validity fitValidity[1440];
 
 	FILE* infile = fopen("FitbitData.csv", "r");
 	FILE* outfile = fopen("Results.csv", "w");
 
+	/**
+	 * TA_NOTE: Here, you don't actually halt the program
+	 * if the files don't open. You just print a message.
+	 */
 	//check for file flow, yeah dawg we got flow
 	if (infile == NULL)
 		printf("NO INFILE!");
@@ -30,6 +42,9 @@ int main(void)
 	//sort data from .csv file into array
 	parseCSV(infile, fitData, fitValidity);
 
+	/**
+	 * TA_NOTE: For this assignment, you have to also print the cleaned data.
+	*/
 	//write it all onto an output .csv file
 	writeCVS(outfile, fitData, fitValidity);
 
